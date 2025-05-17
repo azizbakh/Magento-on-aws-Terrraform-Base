@@ -24,7 +24,7 @@ resource "aws_opensearch_domain" "this" {
   })
 
   vpc_options {
-    subnet_ids         = var.private_subnet_ids
+    subnet_ids         = [element(var.private_subnet_ids, 0)] # Use the first private subnet
     security_group_ids = [var.es_sg_id]
   }
 
